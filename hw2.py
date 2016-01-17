@@ -4,6 +4,7 @@ from collections import defaultdict
 import numpy as np
 import math
 import sys
+import random
 
 
 def read_data_file(filename):
@@ -93,5 +94,31 @@ for docId in test_map:
         error_num += 1
 
 error_rate = error_num * 1.0 / test_num
-print "error_rate" + str(error_rate)
+print "error_rate " + str(error_rate)
+# 0.21892071952
+
+
+# better model
+train_indexs = random.sample(range(1, doc_num + 1), doc_num * 8 / 10)
+train_indexs.sort()
+# validation_indexs = [i for i in range(1, doc_num + 1) if i not in train_indexs]
+
+
+t_data = {}
+t_label = defaultdict(int)
+t_map = {}
+v_data = {}
+v_label = defaultdict(int)
+v_map = {}
+
+for docId in train_data:
+    if docId in train_indexs:
+        t_data[docId] = train_data[docId]
+        t_map[docId] = train_map[docId]
+        t_label[train_map[docId]] += 1
+    else:
+        v_data[docId] = train_data[docId]
+        v_map[docId] = train_map[docId]
+        v_label[train_map[docId]] += 1
+
 
