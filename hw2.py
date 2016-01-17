@@ -85,7 +85,13 @@ def choose(data):
 
 test_data = read_data_file("data/test.data")
 test_label, test_map = read_data_label("data/test.label")
-print choose(test_data[2])
-print test_map[2]
 
+test_num = len(test_map)
+error_num = 0
+for docId in test_map:
+    if choose(test_data[docId]) != test_map[docId]:
+        error_num += 1
+
+error_rate = error_num * 1.0 / test_num
+print "error_rate" + str(error_rate)
 
