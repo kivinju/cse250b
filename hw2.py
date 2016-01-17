@@ -2,6 +2,8 @@
 
 from collections import defaultdict
 import numpy as np
+import math
+import sys
 
 
 def read_data_file(filename):
@@ -62,5 +64,28 @@ for groupId in range(len(p)):
         p[groupId][vId] = p[groupId][vId] / group_sum
 
 
+
+# routine groupId: 1 - 20
+def helper(data, groupId):
+    result = 0.0
+    result += math.log(pi[groupId - 1])
+    for wordId in data:
+        result += data[wordId] * math.log(p[groupId - 1][wordId - 1])
+    return result
+
+def choose(data):
+    m = -sys.maxint - 1
+    result = 0
+    for groupId in range(1, 21):
+        temp = helper(data, groupId)
+        if temp > m:
+            m = temp
+            result = groupId
+    return result
+
+test_data = read_data_file("data/test.data")
+test_label, test_map = read_data_label("data/test.label")
+print choose(test_data[2])
+print test_map[2]
 
 
