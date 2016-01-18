@@ -122,3 +122,6 @@ for docId in train_data:
         v_label[train_map[docId]] += 1
 
 
+# False, True, 40000 0.131322094055
+# False, True, 45000 0.130434782609
+# False, True, 50000 0.132209405501
