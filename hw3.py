@@ -118,6 +118,9 @@ plt.axhline(0)
 plt.axvline(0)
 plt.xlim((-0.1, 1.1))
 plt.ylim((-0.01, 0.05))
-plt.show()
+plt.xticks([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1])
+plt.xlabel('f')
+plt.ylabel('error rate')
+plt.savefig('6.png')
 
 
