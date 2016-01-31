@@ -1,8 +1,8 @@
 __author__ = 'zhoukai'
 
 
-# import numpy as np
-# import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.pyplot as plt
 # import matplotlib.patches as mpatches
 
 # mean = [0, 0]
@@ -35,56 +35,89 @@ __author__ = 'zhoukai'
 # plt.savefig('3.png')
 
 
-
-import struct
-from array import array
-from collections import defaultdict
-import sys
-from random import sample, randint
-import numpy as np
-import scipy.spatial
-
-
-def load(path_img, path_lbl):
-    with open(path_lbl, 'rb') as file:
-        magic, size = struct.unpack(">II", file.read(8))
-        if magic != 2049:
-            raise ValueError('Magic number mismatch, expected 2049,'
-                             'got {}'.format(magic))
-
-        labels = array("B", file.read())
-
-    with open(path_img, 'rb') as file:
-        magic, size, rows, cols = struct.unpack(">IIII", file.read(16))
-        if magic != 2051:
-            raise ValueError('Magic number mismatch, expected 2051,'
-                             'got {}'.format(magic))
-
-        image_data = array("B", file.read())
-
-    images = []
-    for i in range(size):
-        images.append([0] * rows * cols)
-
-    for i in range(size):
-        images[i][:] = image_data[i * rows * cols:(i + 1) * rows * cols]
-
-    return images, labels
-
-
-train_images, train_labels = load("data/train-images-idx3-ubyte", "data/train-labels-idx1-ubyte")
-test_images, test_labels = load("data/t10k-images-idx3-ubyte", "data/t10k-labels-idx1-ubyte")
-
-
-
-
-
-
-
-
-
-
-
-
+x = [
+    0,
+    0.01,
+    0.02,
+    0.03,
+    0.04,
+    0.05,
+    0.06,
+    0.07,
+    0.08,
+    0.09,
+    0.1,
+    0.11,
+    0.12,
+    0.13,
+    0.14,
+    0.15,
+    0.16,
+    0.17,
+    0.18,
+    0.19,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1
+]
+y = [
+    0.0432,
+    0.03828282828282828,
+    0.0336734693877551,
+    0.03,
+    0.0271875,
+    0.024421052631578948,
+    0.022127659574468085,
+    0.02010968921389397,
+    0.0175,
+    0.016813186813186814,
+    0.015555555555555555,
+    0.013595505617977528,
+    0.012727272727272728,
+    0.01206896551724138,
+    0.011164088847540412,
+    0.010705882352941176,
+    0.010357142857142856,
+    0.0095192191830341,
+    0.008902439024390243,
+    0.008518518518518519,
+    0.008125,
+    0.006266666666666667,
+    0.004714285714285714,
+    0.004,
+    0.0036666666666666666,
+    0.0025454545454545456,
+    0.0018,
+    0.0015555555555555555,
+    0.0015,
+    0.0008571428571428571,
+    0.0003333333333333333,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+]
+plt.plot(x, y, 'o')
+plt.axhline(0)
+plt.axvline(0)
+plt.xlim((-0.1, 1.1))
+plt.ylim((-0.01, 0.05))
+plt.show()
 
 
