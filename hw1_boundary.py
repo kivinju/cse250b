@@ -124,7 +124,7 @@ def error_rate(train_images, train_labels, test_images, test_labels):
             error += 1
     return error * 1.0 / len(test_images)
 
-e1 =  error_rate(train_images, train_labels, test_images, test_labels)
+e1 = error_rate(train_images, train_labels, test_images, test_labels)
 # 0.16
 e2 = error_rate(trimmed_train_images, trimmed_train_labels, test_images, test_labels)
 # 0.17
